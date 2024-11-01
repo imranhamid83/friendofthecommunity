@@ -20,7 +20,7 @@ export default function Page() {
       </div>
       <h1 className={styles.bgHeader}>About Us</h1>
       <p className={styles.bgText}>
-        We are a group of individuals in who want to bring the people together by training, volunteer, bounding, respect and much more. Come and join us in our mission to create communities which can bring change and harmony.
+        We are a group of individuals who want to bring the people together by training, volunteer, bounding, respect and much more. Come and join us in our mission to create communities which can bring change and harmony.
       </p>
     </>
   );

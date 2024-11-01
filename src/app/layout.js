@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Welcome to Frends of the Community",
+  title: "Welcome to Friends of the Community",
   description: "We bring people together to bring harmony in our communities",
 };
 
