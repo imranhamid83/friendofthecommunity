@@ -19,7 +19,7 @@ export default function Page() {
           }}
         />
       </div>
-      <h1 className={styles.bgHeader}>Welcome to Globomantics Conference</h1>
+      <h1 className={styles.bgHeader}>Welcome to our first conference</h1>
       <h2 className={styles.bgText}>
         <Link className={styles.bgLinks} href="/conference/speakers">
           View Speakers
