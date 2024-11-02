@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         <header>
           <h1>
             <Link className={styles.homeLink} href={"/"}>
-            FRIENDS OF THE COMMUNITY
+            Home
             </Link>
           </h1>
           <h3>

@@ -1,5 +1,7 @@
 {
   "/page": "app/page.js",
-  "/conference/speakers/page": "app/conference/speakers/page.js",
-  "/conference/page": "app/conference/page.js"
+  "/AboutUs/page": "app/AboutUs/page.js",
+  "/ContactUs/page": "app/ContactUs/page.js",
+  "/conference/page": "app/conference/page.js",
+  "/conference/speakers/page": "app/conference/speakers/page.js"
 }
