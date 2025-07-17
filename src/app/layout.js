@@ -14,8 +14,16 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Welcome to Friends of the Community",
+  title: "Welcome to Muslims in Amersham",
   description: "We bring people together to bring harmony in our communities",
+  keywords: [
+    "Muslims in Amersham",
+    "Amersham Muslims",
+    "Amersham communities",
+    "Amersham minorities",
+    "Muslims in Little Chalfont",
+    "Little Chalfont Muslims"
+  ]
 };
 
 export default function RootLayout({ children }) {
