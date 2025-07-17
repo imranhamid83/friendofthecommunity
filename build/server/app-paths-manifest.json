@@ -1,12 +1,12 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/contact-email/route": "app/api/contact-email/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/ContactUs/page": "app/ContactUs/page.js",
   "/AboutUs/page": "app/AboutUs/page.js",
   "/page": "app/page.js",
-  "/ContactUs/page": "app/ContactUs/page.js",
-  "/conference/page": "app/conference/page.js",
-  "/conference/speakers/page": "app/conference/speakers/page.js",
   "/conference/speakers/[slug]/page": "app/conference/speakers/[slug]/page.js",
-  "/conference/sessions/page": "app/conference/sessions/page.js"
+  "/conference/sessions/page": "app/conference/sessions/page.js",
+  "/conference/speakers/page": "app/conference/speakers/page.js",
+  "/conference/page": "app/conference/page.js"
 }
