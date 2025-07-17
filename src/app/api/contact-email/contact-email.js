@@ -20,7 +20,7 @@ export async function POST(req) {
     const message = {
       senderAddress: 'DoNotReply@zero-tek.co.uk',
       content: {
-        subject: `Contact Us Query from ${name}`,
+        subject: `Contact Us Query from Amersham Muslims web site`,
         plainText: `Name: ${name}\nEmail: ${email}\nQuery: ${query}`,
         html: `<p><b>Name:</b> ${name}<br/><b>Email:</b> ${email}<br/><b>Query:</b><br/>${query.replace(/\n/g, '<br/>')}</p>`
       },
