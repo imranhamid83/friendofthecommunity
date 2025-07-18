@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ourStoryPic from "/public/images/home-image-1.jpg";
 import styles from "./home.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Page() {
   const [form, setForm] = useState({ name: "", email: "", query: "" });
@@ -42,6 +42,15 @@ export default function Page() {
       setStatus("Failed to send. Try again later.");
     }
   }
+
+  useEffect(() => {
+    if (status && status !== "Sending...") {
+      const timeout = setTimeout(() => {
+        setStatus("");
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [status]);
 
   return (
     <>
