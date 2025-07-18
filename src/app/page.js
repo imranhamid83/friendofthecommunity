@@ -25,7 +25,7 @@ export default function Page() {
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Welcome to Friends of the Community
+            Muslims in Amersham & Chalfont
           </h1>
           <p className="text-xl md:text-2xl mb-8">
             Building stronger communities through connection and collaboration
@@ -44,11 +44,14 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Mission</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We bring people together to create wonderful communities through meaningful
-              connections, shared experiences, and collaborative initiatives that make
-              a lasting positive impact.
-            </p>
+          
+            <ul className="text-lg text-gray-700 max-w-3xl mx-auto text-left mt-8 space-y-4 pl-6 list-disc list-inside">
+              <li className="flex items-start gap-2"><span className="mt-1 text-blue-600">•</span>To serve the local community with integrity, compassion, and professionalism.</li>
+              <li className="flex items-start gap-2"><span className="mt-1 text-blue-600">•</span>To provide meaningful support spiritual, educational, and practical to individuals and families in need.</li>
+              <li className="flex items-start gap-2"><span className="mt-1 text-blue-600">•</span>To build bridges between the Muslim community and the wider society through open dialogue and civic engagement.</li>
+              <li className="flex items-start gap-2"><span className="mt-1 text-blue-600">•</span>To empower youth with opportunities for growth, leadership, and faith-based guidance.</li>
+              <li className="flex items-start gap-2"><span className="mt-1 text-blue-600">•</span>To uphold Islamic values in everything we do: justice, mercy, honesty, and service to others.</li>
+            </ul>
           </div>
         </div>
       </section>
