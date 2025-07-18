@@ -78,6 +78,34 @@ export default function Page() {
         <button type="submit" style={{ width: '100%', padding: 10, borderRadius: 4, background: '#0070f3', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }} disabled={status === "Sending..."}>Submit</button>
         {status && <div style={{ marginTop: 16, color: status.startsWith("Thank") ? '#b3ffb3' : '#ffb3b3', fontWeight: 500 }}>{status}</div>}
       </form>
+      {(status === "Sending..." || status.startsWith("Thank") || status.startsWith("Failed") || status.startsWith("All fields") || status.startsWith("Invalid")) && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.5)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff',
+            color: '#222',
+            borderRadius: 12,
+            padding: '36px 32px',
+            minWidth: 280,
+            boxShadow: '0 2px 16px rgba(0,0,0,0.18)',
+            textAlign: 'center',
+            fontSize: 20,
+            fontWeight: 500,
+          }}>
+            {status === "Sending..." ? "Sending..." : status}
+          </div>
+        </div>
+      )}
     </>
   );
 }
