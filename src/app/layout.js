@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from 'next/link';
 import Navigation from "./components/Navigation";
 
 const geistSans = localFont({
@@ -40,11 +41,27 @@ export default function RootLayout({ children }) {
               <div>
                 <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                 <ul className="space-y-2">
-                  <li><a href="/AboutUs" className="text-gray-300 hover:text-white">About Us</a></li>
-                  <li><a href="/conference" className="text-gray-300 hover:text-white">Events</a></li>
-                  <li><a href="/blogs" className="text-gray-300 hover:text-white">Blogs</a></li>
-                  <li><a href="/ContactUs" className="text-gray-300 hover:text-white">Contact Us</a></li>
-                </ul>
+                <li>
+                  <Link href="/AboutUs" className="text-gray-300 hover:text-white">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/conference" className="text-gray-300 hover:text-white">
+                    Events
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blogs" className="text-gray-300 hover:text-white">
+                    Blogs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/ContactUs" className="text-gray-300 hover:text-white">
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
