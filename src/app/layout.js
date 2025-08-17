@@ -42,6 +42,7 @@ export default function RootLayout({ children }) {
                 <ul className="space-y-2">
                   <li><a href="/AboutUs" className="text-gray-300 hover:text-white">About Us</a></li>
                   <li><a href="/conference" className="text-gray-300 hover:text-white">Events</a></li>
+                  <li><a href="/blogs" className="text-gray-300 hover:text-white">Blogs</a></li>
                   <li><a href="/ContactUs" className="text-gray-300 hover:text-white">Contact Us</a></li>
                 </ul>
               </div>

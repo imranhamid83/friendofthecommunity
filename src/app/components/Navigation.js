@@ -27,6 +27,9 @@ export default function Navigation() {
             <Link href="/events" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
               Events
             </Link>
+            <Link href="/blogs" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+              Blogs
+            </Link>
             <Link href="/ContactUs" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
               Contact Us
             </Link>
@@ -65,6 +68,9 @@ export default function Navigation() {
             </Link>
             <Link href="/events" className="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">
               Events
+            </Link>
+            <Link href="/blogs" className="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">
+              Blogs
             </Link>
             <Link href="/ContactUs" className="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium">
               Contact Us

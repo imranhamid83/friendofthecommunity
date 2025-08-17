@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.868.0",
+    "@aws-sdk/lib-dynamodb": "^3.868.0",
     "@azure/communication-email": "^1.0.0",
     "@azure/cosmos": "^4.5.0",
     "@shadcn/ui": "^0.0.4",
