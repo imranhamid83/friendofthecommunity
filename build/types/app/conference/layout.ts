@@ -1,8 +1,8 @@
 // File: C:\Source\friendsofthecommunity\src\app\conference\layout.js
-import * as entry from '../../../../src/app/conference/layout.js'
+import * as entry from '../../../../src/app/events/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/conference/layout.js')
+type TEntry = typeof import('../../../../src/app/events/layout.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
