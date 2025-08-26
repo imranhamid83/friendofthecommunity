@@ -36,7 +36,7 @@ export default async function Page({ params }) {
             <p className="text-sm text-gray-500">{speaker.organization}</p>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-600">Speaker ID: {speaker.speakerId}</p>
+            <p className="text-sm text-gray-600">{speaker.bio}</p>
           </CardContent>
         </Card>
       ))}
