@@ -20,7 +20,7 @@ export default async function Page({ params }) {
   if (!event) return <p className="text-center mt-10">Event not found.</p>;
 
   return (
-    <div className="max-w-4xl mx-auto py-10">
+    <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6">
       <h1 className="text-3xl font-bold mb-2">{event.title}</h1>
       <p className="text-gray-500 mb-1">{event.date} @ {event.time}</p>
       <p className="text-gray-500 mb-4">{event.location}</p>

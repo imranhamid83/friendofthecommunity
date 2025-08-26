@@ -4,11 +4,13 @@ import Image from "next/image";
 import ourStoryPic from "/public/images/home-image-1.jpg";
 import styles from "./home.module.css";
 import { useState, useEffect } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Page() {
   const [form, setForm] = useState({ name: "", email: "", query: "" });
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState({});
+  const [captchaToken, setCaptchaToken] = useState("");
 
   function validate(form) {
     const errs = {};
@@ -29,7 +31,7 @@ export default function Page() {
       const res = await fetch("/api/contact-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, token: captchaToken }),
       });
       if (res.ok) {
         setStatus("Thank you! Your message has been sent.");
@@ -84,7 +86,10 @@ export default function Page() {
           <textarea id="query" name="query" value={form.query} onChange={e => setForm(f => ({ ...f, query: e.target.value }))} required rows={4} style={{ width: '100%', padding: 8, borderRadius: 4, border: '1px solid #ccc' }} />
           {errors.query && <div style={{ color: '#ffb3b3', fontSize: 13 }}>{errors.query}</div>}
         </div>
-        <button type="submit" style={{ width: '100%', padding: 10, borderRadius: 4, background: '#0070f3', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }} disabled={status === "Sending..."}>Submit</button>
+        <div style={{ marginBottom: 16 }}>
+          <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "test"} onChange={(token) => setCaptchaToken(token || "")} />
+        </div>
+        <button type="submit" style={{ width: '100%', padding: 10, borderRadius: 4, background: '#0070f3', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }} disabled={status === "Sending..." || !captchaToken}>Submit</button>
         {status && <div style={{ marginTop: 16, color: status.startsWith("Thank") ? '#b3ffb3' : '#ffb3b3', fontWeight: 500 }}>{status}</div>}
       </form>
       {(status === "Sending..." || status.startsWith("Thank") || status.startsWith("Failed") || status.startsWith("All fields") || status.startsWith("Invalid")) && (
