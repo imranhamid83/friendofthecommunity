@@ -24,7 +24,7 @@ export default async function Page() {
             <p className="text-sm text-gray-500">{event.location}</p>
           </CardHeader>
           <CardContent>
-            <p>{event.description}</p>
+            <p>{event.summary}</p>
             <Link
               href={`/events/${event.eventId}`}
               className="text-blue-600 hover:underline mt-3 block"

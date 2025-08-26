@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/conference" className="text-gray-300 hover:text-white">
+                  <Link href="/events" className="text-gray-300 hover:text-white">
                     Events
                   </Link>
                 </li>
