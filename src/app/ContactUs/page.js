@@ -11,6 +11,7 @@ export default function Page() {
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState({});
   const [captchaToken, setCaptchaToken] = useState("");
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   function validate(form) {
     const errs = {};
@@ -87,9 +88,13 @@ export default function Page() {
           {errors.query && <div style={{ color: '#ffb3b3', fontSize: 13 }}>{errors.query}</div>}
         </div>
         <div style={{ marginBottom: 16 }}>
-          <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "test"} onChange={(token) => setCaptchaToken(token || "")} />
+          {siteKey ? (
+            <ReCAPTCHA sitekey={siteKey} onChange={(token) => setCaptchaToken(token || "")} />
+          ) : (
+            <div style={{ color: '#ffb3b3', fontSize: 13 }}>Captcha site key missing. Please configure NEXT_PUBLIC_RECAPTCHA_SITE_KEY.</div>
+          )}
         </div>
-        <button type="submit" style={{ width: '100%', padding: 10, borderRadius: 4, background: '#0070f3', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }} disabled={status === "Sending..." || !captchaToken}>Submit</button>
+        <button type="submit" style={{ width: '100%', padding: 10, borderRadius: 4, background: '#0070f3', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }} disabled={status === "Sending..." || !captchaToken || !siteKey}>Submit</button>
         {status && <div style={{ marginTop: 16, color: status.startsWith("Thank") ? '#b3ffb3' : '#ffb3b3', fontWeight: 500 }}>{status}</div>}
       </form>
       {(status === "Sending..." || status.startsWith("Thank") || status.startsWith("Failed") || status.startsWith("All fields") || status.startsWith("Invalid")) && (
