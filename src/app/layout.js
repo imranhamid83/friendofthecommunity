@@ -31,6 +31,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZB4FTB6" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <Navigation />
         <main className="flex-grow">
           {children}
