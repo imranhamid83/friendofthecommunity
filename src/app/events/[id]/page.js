@@ -4,7 +4,6 @@ import Link from "next/link";
 export default async function Page({ params }) {
   const { id } = await params; // eventId
   let event = null;
-<h2>Event Details</h2>
   try {
     const { resources } = await eventsContainer.items
     .query({
@@ -20,7 +19,9 @@ export default async function Page({ params }) {
   if (!event) return <p className="text-center mt-10">Event not found.</p>;
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6">     
+    <Link href="/events" className="text-blue-600 hover:underline inline-block mb-4">← Back to Events</Link> 
+    <h2>Event Details</h2>
       <h1 className="text-3xl font-bold mb-2">{event.title}</h1>
       <p className="text-gray-500 mb-1">{event.date} @ {event.time}</p>
       <p className="text-gray-500 mb-4">{event.location}</p>

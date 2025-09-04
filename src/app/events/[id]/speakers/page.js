@@ -1,5 +1,6 @@
 import { speakersContainer } from "@/lib/cosmos";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 export default async function Page({ params }) {    
   const eventId = parseInt(params.id, 10);
@@ -27,7 +28,9 @@ export default async function Page({ params }) {
   }
 
   return (    
-    <div className="max-w-6xl mx-auto py-10 grid gap-6 grid-cols-1 md:grid-cols-3">
+    <div className="max-w-6xl mx-auto py-10 px-4 sm:px-6">
+      <Link href={`/events/${eventId}`} className="text-blue-600 hover:underline inline-block mb-4">← Back to Event</Link> 
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-3">      
       {speakers.map((speaker) => (
         <Card key={speaker.id} className="hover:shadow-lg transition">
           <CardHeader>
@@ -40,6 +43,7 @@ export default async function Page({ params }) {
           </CardContent>
         </Card>
       ))}
+      </div>
     </div>
   );
 }
