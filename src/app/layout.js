@@ -72,6 +72,16 @@ export default function RootLayout({ children }) {
                 <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
                 <ul className="space-y-2 text-gray-300">
                   <li>Fill the form on the <a href="/ContactUs" className="text-gray-300 hover:text-white">Contact Us</a> page</li>
+                  <li>
+                    <a
+                      href="https://chat.whatsapp.com/BSxKIN9Ukf0Cb0kW8l4S0D"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-white"
+                    >
+                      Join our WhatsApp group
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

@@ -17,17 +17,17 @@ export default async function Page() {
   return (
     <div className="max-w-6xl mx-auto py-10 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">      
       {events.map((event) => (
-        <Card key={event.id} className="hover:shadow-lg transition">
+        <Card key={event.id} className="hover:shadow-lg transition h-full flex flex-col">
           <CardHeader>
             <CardTitle>{event.title}</CardTitle>
             <p className="text-sm text-gray-500">{event.date} @ {event.time}</p>
             <p className="text-sm text-gray-500">{event.location}</p>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex-1 flex flex-col">
             <p>{event.summary}</p>
             <Link
               href={`/events/${event.eventId}`}
-              className="text-blue-600 hover:underline mt-3 block"
+              className="text-blue-600 hover:underline mt-auto pt-3 block"
             >
               View Details →
             </Link>
