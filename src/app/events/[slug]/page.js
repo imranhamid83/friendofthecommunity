@@ -16,7 +16,8 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: event ? `${event.title} | Friends of the Community` : "Event Not Found",
+    title: event ? `${event.title} | Muslims in Amersham & Chalfont` : "Event Not Found",
+    description: event ? (event.summary || event.description?.substring(0, 160)) : "Event not found",
   };
 }
 

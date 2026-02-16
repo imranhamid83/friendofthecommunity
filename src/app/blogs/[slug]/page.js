@@ -1,38 +1,45 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { toSlug } from "@/lib/utils";
 
-export default function BlogDetailPage() {
-  const params = useParams();
-  const slug = params.slug;
+const client = new DynamoDBClient({
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+  },
+});
 
-  const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
+const ddbDocClient = DynamoDBDocumentClient.from(client);
 
-  useEffect(() => {
-    async function fetchBlog() {
-      try {
-        const res = await fetch(`/api/blogs/by-slug/${slug}`);
-        const data = await res.json();
-        setBlog(data);
-      } catch (err) {
-        console.error("Error loading blog:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchBlog();
-  }, [slug]);
+async function getBlogBySlug(slug) {
+  try {
+    const command = new ScanCommand({
+      TableName: "Blogs",
+    });
+    const data = await ddbDocClient.send(command);
+    return data.Items?.find(item => toSlug(item.title) === slug) || null;
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    return null;
+  }
+}
 
-  useEffect(() => {
-    if (blog?.title) {
-      document.title = `${blog.title} | Friends of the Community`;
-    }
-  }, [blog]);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
 
-  if (loading) return <p className="p-6">Loading blog...</p>;
+  return {
+    title: blog ? `${blog.title} | Muslims in Amersham & Chalfont` : "Blog Not Found",
+    description: blog ? blog.content?.substring(0, 160) : "Blog not found",
+  };
+}
+
+export default async function BlogDetailPage({ params }) {
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
+
   if (!blog || !blog.blogId) return <p className="p-6">Blog not found.</p>;
 
   return (
@@ -89,4 +96,3 @@ export default function BlogDetailPage() {
     </div>
   );
 }
-
