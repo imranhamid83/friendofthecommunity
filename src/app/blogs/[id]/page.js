@@ -39,7 +39,7 @@ export default function BlogDetailPage() {
           </p>
         </CardHeader>
         <CardContent>
-          <p className="text-base leading-relaxed">{blog.content}</p>
+          <p className="text-base leading-relaxed whitespace-pre-line">{blog.content}</p>
 
           {blog.tags && (
             <div className="mt-4 flex flex-wrap gap-2">
