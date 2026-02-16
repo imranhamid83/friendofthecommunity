@@ -1,4 +1,5 @@
 import { eventsContainer } from "@/lib/cosmos";
+import { toSlug } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
@@ -26,7 +27,7 @@ export default async function Page() {
           <CardContent className="flex-1 flex flex-col">
             <p>{event.summary}</p>
             <Link
-              href={`/events/${event.eventId}`}
+              href={`/events/${toSlug(event.title)}`}
               className="text-blue-600 hover:underline mt-auto pt-3 block"
             >
               View Details →

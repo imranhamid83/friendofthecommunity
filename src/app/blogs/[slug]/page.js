@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function BlogDetailPage() {
   const params = useParams();
-  const blogId = params.id;
+  const slug = params.slug;
 
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ export default function BlogDetailPage() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const res = await fetch(`/api/blogs/${blogId}`);
+        const res = await fetch(`/api/blogs/by-slug/${slug}`);
         const data = await res.json();
         setBlog(data);
       } catch (err) {
@@ -24,7 +24,13 @@ export default function BlogDetailPage() {
       }
     }
     fetchBlog();
-  }, [blogId]);
+  }, [slug]);
+
+  useEffect(() => {
+    if (blog?.title) {
+      document.title = `${blog.title} | Friends of the Community`;
+    }
+  }, [blog]);
 
   if (loading) return <p className="p-6">Loading blog...</p>;
   if (!blog || !blog.blogId) return <p className="p-6">Blog not found.</p>;
@@ -83,3 +89,4 @@ export default function BlogDetailPage() {
     </div>
   );
 }
+

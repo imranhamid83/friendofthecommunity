@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { toSlug } from "@/lib/utils";
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
@@ -33,7 +34,7 @@ export default function BlogsPage() {
 
       <div className="grid gap-4">
         {blogs.map((blog) => (
-          <Link key={blog.blogId} href={`/blogs/${blog.blogId}`}>
+          <Link key={blog.blogId} href={`/blogs/${toSlug(blog.title)}`}>
             <Card className="hover:shadow-lg transition cursor-pointer">
               <CardHeader>
                 <CardTitle className="text-xl">{blog.title}</CardTitle>
