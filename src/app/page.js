@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import ourStoryPic from "/public/images/home-image-1.jpg";
+import ourStoryPic from "/public/images/ramadan-mubarak.webp";
 import styles from "./rootStyle.module.css";
 
 export default function Page() {
