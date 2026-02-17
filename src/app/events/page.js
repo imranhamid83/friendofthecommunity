@@ -3,13 +3,23 @@ import { toSlug } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
+// Parse DD-MM-YYYY date format to Date object
+function parseEventDate(dateStr) {
+  if (!dateStr || dateStr.trim() === "") return new Date(0);
+  const [day, month, year] = dateStr.split("-");
+  return new Date(year, month - 1, day);
+}
+
 export default async function Page() {
   let events = [];  
   try {
     const { resources } = await eventsContainer.items
-      .query("SELECT * FROM c ORDER BY c.date DESC")
+      .query("SELECT * FROM c")
       .fetchAll();
-    events = resources;
+    // Sort by date descending (latest/furthest future date first)
+    events = resources.sort((a, b) => 
+      parseEventDate(b.date) - parseEventDate(a.date)
+    );
   } catch (err) {
     console.error("Failed to fetch events:", err);
   }

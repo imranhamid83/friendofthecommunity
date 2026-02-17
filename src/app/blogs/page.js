@@ -14,7 +14,11 @@ export default function BlogsPage() {
       try {
         const res = await fetch("/api/blogs");
         const data = await res.json();
-        setBlogs(data);
+        // Sort by createdDate, latest first
+        const sortedBlogs = data.sort((a, b) => 
+          new Date(b.createdDate) - new Date(a.createdDate)
+        );
+        setBlogs(sortedBlogs);
       } catch (err) {
         console.error("Error loading blogs:", err);
       } finally {
