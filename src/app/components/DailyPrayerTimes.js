@@ -1,3 +1,5 @@
+const PRAYER_CITY = "amersham";
+
 const PRAYER_FIELDS = [
   { key: "fajr", label: "Fajr" },
   { key: "dhuhr", label: "Dhuhr" },
@@ -15,13 +17,21 @@ function getTodayKey(date = new Date()) {
 
 async function fetchTodaysPrayerTimes() {
   const todayKey = getTodayKey();
+  const city = PRAYER_CITY;
   const key = process.env.NEXT_PUBLIC_PRAYER_KEY?.trim();
 
   if (!key) {
     return null;
   }
 
-  const url = `https://www.londonprayertimes.com/api/times/?format=json&date=${todayKey}&24hours=true&key=${encodeURIComponent(key)}`;
+  const params = new URLSearchParams({
+    format: "json",
+    date: todayKey,
+    city,
+    "24hours": "true",
+    key,
+  });
+  const url = `https://www.londonprayertimes.com/api/times/?${params.toString()}`;
 
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
