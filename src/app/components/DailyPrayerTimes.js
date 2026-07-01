@@ -6,6 +6,15 @@ const PRAYER_FIELDS = [
   { key: "isha", label: "Isha" },
 ];
 
+const LATEST_PRAYER_TIMES = {
+  date: "2026-07-01",
+  fajr: "02:49",
+  dhuhr: "13:10",
+  asr: "17:27",
+  magrib: "21:24",
+  isha: "22:36",
+};
+
 function getTodayKey(date = new Date()) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -13,12 +22,17 @@ function getTodayKey(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
+function getFallbackPrayerTimes(todayKey) {
+  return LATEST_PRAYER_TIMES.date === todayKey ? LATEST_PRAYER_TIMES : null;
+}
+
 async function fetchTodaysPrayerTimes() {
   const todayKey = getTodayKey();
   const key = process.env.NEXT_PUBLIC_PRAYER_KEY?.trim();
+  const fallbackTimes = getFallbackPrayerTimes(todayKey);
 
   if (!key) {
-    return null;
+    return fallbackTimes;
   }
 
   const url = `https://www.londonprayertimes.com/api/times/?format=json&date=${todayKey}&24hours=true&key=${encodeURIComponent(key)}`;
@@ -26,12 +40,12 @@ async function fetchTodaysPrayerTimes() {
   try {
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) {
-      return null;
+      return fallbackTimes;
     }
     const data = await res.json();
-    return data.times?.[todayKey] ?? data.times ?? (data.fajr ? data : null);
+    return data.times?.[todayKey] ?? data.times ?? (data.fajr ? data : fallbackTimes);
   } catch {
-    return null;
+    return fallbackTimes;
   }
 }
 
