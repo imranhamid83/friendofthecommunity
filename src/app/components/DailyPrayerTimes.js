@@ -6,10 +6,22 @@ const PRAYER_FIELDS = [
   { key: "isha", label: "Isha" },
 ];
 
+const PRAYER_TIME_ZONE = "Europe/London";
+
 function getTodayKey(date = new Date()) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const dateParts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: PRAYER_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const values = Object.fromEntries(
+    dateParts.map(({ type, value }) => [type, value])
+  );
+
+  const year = values.year;
+  const month = values.month;
+  const day = values.day;
   return `${year}-${month}-${day}`;
 }
 
