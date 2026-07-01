@@ -1,7 +1,9 @@
 import localFont from "next/font/local";
+import { Suspense } from "react";
 import "./globals.css";
 import Link from 'next/link';
 import Navigation from "./components/Navigation";
+import DailyPrayerTimes from "./components/DailyPrayerTimes";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +39,9 @@ export default function RootLayout({ children }) {
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <Navigation />
+        <Suspense fallback={null}>
+          <DailyPrayerTimes />
+        </Suspense>
         <main className="flex-grow">
           {children}
         </main>
