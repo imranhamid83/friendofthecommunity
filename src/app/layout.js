@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from 'next/link';
 import Navigation from "./components/Navigation";
 import DailyPrayerTimes from "./components/DailyPrayerTimes";
+import { getDeploymentInfo } from "@/lib/deployment";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const { deploymentDate, deploymentVersion } = getDeploymentInfo();
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
@@ -92,6 +95,9 @@ export default function RootLayout({ children }) {
             </div>
             <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
               <p>&copy; {new Date().getFullYear()} Muslims in Amersham. All rights reserved.</p>
+              <p className="mt-2 text-sm text-gray-500">
+                Deployment date: {deploymentDate} | Version: {deploymentVersion}
+              </p>
             </div>
           </div>
         </footer>
